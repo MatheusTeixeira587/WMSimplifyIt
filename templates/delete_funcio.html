@@ -1,0 +1,34 @@
+{%extends "layout.html"%}
+{%block content%}
+<div class = "home">
+    <h1 class = "logo"> Deletar registro </h1>
+    <div class = "menu_crud">
+      <strong><nav>
+        <form class = "form-vertical" action = "{{ dados[0] }}" method = "post">
+          <div class = "control-group">
+            <label class = "control-label"> Registro </label>
+            <div class = "controls">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>NOME</th>  
+                  </tr>           
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ dados[0] }}</td>
+                    <td>{{ dados[1] }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+              <div class = "form-actions">
+                <p class = "Danger"> Tem Certeza que deseja apagar permanentemente este registro? </p>
+                <button type = "submit" class = "btn btn-danger"> Sim </button>
+              </div>
+          </div>
+        </form>
+    </div>
+  </div>
+{%endblock%}

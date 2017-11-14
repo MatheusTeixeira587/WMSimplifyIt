@@ -1,0 +1,21 @@
+{%extends "layout.html"%}
+{%block content%}
+	<div class = "home">
+		<h1 class = "logo"> Atualizar informações </h1>
+		<div class = "menu_crud">
+			<strong><nav>
+				<form class = "form-vertical" action "func.func_update" method = "post">
+					<div class = "control-group">
+						<label class = "control-label"> Nome </label>
+						<div class = "controls">
+							<input name = "nome" type = "text" placeholder = "Novo nome!" value = "{{ dados[1] }}">
+						</div>
+						<div class = "form-actions">
+							<button type = "submit" class = "btn btn-sucess"> Salvar </button>
+								<a class = "btn" href = "{{url_for('site.funcionarios')}}"> Voltar </a>
+						</div>
+					</div>
+				</form>
+		</div>
+	</div>
+{%endblock%}
