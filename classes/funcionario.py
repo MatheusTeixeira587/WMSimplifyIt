@@ -1,15 +1,19 @@
 import sqlite3
-class Funcionario():
+import bcrypt
+from flask import *
 
-    def __init__(self, nome = "",table = "func"):
+class User():
+
+    def __init__(self, nome = "",senha = "",table = "func"):
         self.nome = nome
         self.table = table
+        self.senha = senha
 
-    def add_new(self,nome):
+    def add_new(self,nome,senha):
         #conn = psycopg2.connect("dbname = 'projetowms' user = 'postgres' password = 'postgres' host = 'localhost' port = '5432'")
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
-        cur.execute("INSERT INTO " + self.table + " (nome) VALUES (?)",(nome,))
+        cur.execute("INSERT INTO " + self.table + " (nome,senha) VALUES (?,?)",(nome,senha))
         conn.commit()
         conn.close()
 
@@ -17,7 +21,7 @@ class Funcionario():
         #conn = psycopg2.connect("dbname = 'projetowms' user = 'postgres' password = 'postgres' host = 'localhost' port = '5432'")
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
-        dados = cur.execute("SELECT * FROM " + self.table).fetchall()
+        dados = cur.execute("SELECT id,nome FROM " + self.table).fetchall()
         conn.close()
         return dados
 
@@ -25,7 +29,7 @@ class Funcionario():
         #conn = psycopg2.connect("dbname = 'projetowms' user = 'postgres' password = 'postgres' host = 'localhost' port = '5432'")
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
-        dados = cur.execute("SELECT * FROM " + self.table + " WHERE id = ?",(_id_,)).fetchone()
+        dados = cur.execute("SELECT id,nome FROM " + self.table + " WHERE id = ?",(_id_,)).fetchone()
         conn.close()
         return dados
 
@@ -42,3 +46,21 @@ class Funcionario():
         cur.execute("DELETE FROM " + self.table + " WHERE id = ?",(_id_,))
         conn.commit()
         conn.close()
+
+def check_pass(self,nome,senha):
+    conn = sqlite3.connect("projetowms.db")
+    cur = conn.cursor()
+    dados = cur.execute("SELECT id,senha FROM " + self.table + " WHERE nome = ?",(nome,)).fetchone()
+    _id_ = dados[0]
+    senhash = dados[1]
+    if(bcrypt.hashpw(senha.encode(),senhash) == senhash):
+        return True
+    else:
+        return False
+
+def is_logged_in(self):
+    if "User" in session:
+        return True
+    else:
+        return redirect("/funcionarios/login")
+        
