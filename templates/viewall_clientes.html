@@ -1,19 +1,17 @@
 {%extends "layout.html"%}
 {%block content%}
 <div class = "home">
-    <h1 class = "logo"> Lista de itens </h1>
+    <h1 class = "logo"> Lista de Clientes </h1>
     <div class = "menu_crud">
       <strong><nav>
-        <form class = "form-vertical" action = "add_item" method = "post">
+        <form class = "form-vertical" action = "add_clientes" method = "post">
           	<div class = "control-group">
             	<table class="table table-striped table-bordered" name="tabela" id="tabela" >
 					<thead>
 						<tr>
 							<td> ID </td>
 							<td> Nome </td>
-             				<td> Quantidade </td>
-            				<td> Preço </td>
-							<td> Opções </td>
+             				<td> CNPJ </td>
 						</tr>
 					</thead>
 					<tbody>
@@ -23,9 +21,9 @@
 							<td>{{ col }}</td>
 						{%endfor%}
 							<div class = "buttons">
-								<td><a href = "update_item/{{row[0]}}"> Alterar </a></td>
-								<td><a href = "viewone_item/{{row[0]}}"> Ver </a></td>
-								<td><a href = "delete_item/{{row[0]}}"> Deletar </td>
+								<td><a href = "update_clientes/{{row[0]}}"> Alterar </a></td>
+								<td><a href = "viewone_clientes/{{row[0]}}"> Ver </a></td>
+								<td><a href = "delete_clientes/{{row[0]}}"> Deletar </td>
 							</div>
 						</tr>
 					{%endfor%}

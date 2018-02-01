@@ -37,3 +37,10 @@ def pedidos():
         return render_template("pedidos.html")
     else:
         return redirect("/funcionarios/login")
+
+@blue_main.route("/clientes")
+def clientes():
+    if "User" in session:
+        return render_template("clientes.html")
+    else:
+        return redirect("/funcionarios/login")

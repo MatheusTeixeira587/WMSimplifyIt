@@ -2,9 +2,7 @@ import sqlite3
 
 class Pedidos():
 	
-	_d_ = dict()
-	def __init__(self,nome = "",table = "pedido",status = "",itens = _d_):
-		self.nome = nome
+	def __init__(self,_id_ = "", id_cliente = "",data = "", status = ""):
 		self.table = table
 		self.status = status
 		self.itens = itens

@@ -47,20 +47,19 @@ class User():
         conn.commit()
         conn.close()
 
-def check_pass(self,nome,senha):
-    conn = sqlite3.connect("projetowms.db")
-    cur = conn.cursor()
-    dados = cur.execute("SELECT id,senha FROM " + self.table + " WHERE nome = ?",(nome,)).fetchone()
-    _id_ = dados[0]
-    senhash = dados[1]
-    if(bcrypt.hashpw(senha.encode(),senhash) == senhash):
-        return True
-    else:
-        return False
+    def check_pass(self,nome,senha):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        dados = cur.execute("SELECT id,senha FROM " + self.table + " WHERE nome = ?",(nome,)).fetchone()
+        _id_ = dados[0]
+        senhash = dados[1]
+        if(bcrypt.hashpw(senha.encode(),senhash) == senhash):
+            return True
+        else:
+            return False
 
-def is_logged_in(self):
-    if "User" in session:
-        return True
-    else:
-        return redirect("/funcionarios/login")
-        
+    def is_logged_in(self):
+        if "User" in session:
+            return True
+        else:
+            return redirect("/funcionarios/login")

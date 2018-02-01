@@ -1,0 +1,42 @@
+{%extends "layout.html"%}
+{%block content%}
+<div class = "home">
+    <h1 class = "logo"> Visualizar registro </h1>
+    <div class = "menu_crud">
+      <strong><nav>
+        <form class = "form-vertical" action = "viewone_clientes" method = "post">
+            <div class = "control-group">
+                <label class = "control-label"> Nome </label>
+                <div class = "controls">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>NOME</th> 
+								<th>CNPJ</th>
+                            </tr>           
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ dados[0] }}</td>
+                                <td>{{ dados[1] }}</td>
+								<td>{{ dados[2] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                        <tr>
+                            <td><a href = "/clientes/update_clientes/{{dados[0]}}"> Alterar </a></td>
+                            <td><a href = "/clientes/delete_clientes/{{dados[0]}}"> Deletar </a></td>
+                            </tr>
+                    </table>
+                </div>
+                    <div class = "form-actions">
+                        <button type = "submit" class = "btn btn-sucess"> Salvar </button>
+                        <a class = "btn" href = "{{url_for('site.clientes')}}">voltar</a>
+                    </div>
+            </div>
+        </form>
+    </div>
+</div>
+{%endblock%}
