@@ -2,7 +2,10 @@
   <html>
     <head>
       <title> WMS Simplify It </title>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
       <link rel = "stylesheet" href="{{url_for('static',filename = 'css/style.css')}}">
+      {%block css%}
+      {%endblock%}
     </head>
     <body>
       <header>
@@ -24,5 +27,10 @@
         {%block content%}
         {%endblock%}
       </div>
+      <script src="{{ url_for('static',filename = 'js/jquery-2.2.3.min.js')}}"></script>
+      
+        {%block js%}
+        {%endblock%}      
+        <script src="{{ url_for('static',filename = 'js/bootstrap.min.js')}}"></script>
     </body>
   </html>

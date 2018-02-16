@@ -14,6 +14,8 @@ def login_funcio():
         if(u1.check_pass(nome,senha)):
             session["User"] = nome
             return redirect("/")
+        else:
+            return redirect("/funcionarios/login")
 
 @blue_funcio.route("/add_funcio", methods = ["GET","POST"])
 def add_funcio():

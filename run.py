@@ -45,6 +45,6 @@ def create_table():
     conn.close()
 
 
-create_table()
+#create_table()
 if __name__ == "__main__":
     app.run(debug = True)

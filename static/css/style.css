@@ -92,3 +92,15 @@ h3 {
 .Danger {
   color: red;
 }
+
+.badge-notify{
+	background:red;
+	position:relative;
+	top: -20px;
+	right: 10px;
+}
+.my-cart-icon-affix {
+	position: fixed;
+	z-index: 999;
+}
+

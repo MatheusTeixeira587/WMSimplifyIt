@@ -9,7 +9,6 @@ def add_pedido():
             return render_template("add_pedido.html")
         else:
             nome = request.form["name"]
-            itens = request.form["itens"]
             status = True
             p1 = Pedidos()
             p1.add_new(nome,status,itens)
