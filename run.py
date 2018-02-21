@@ -8,6 +8,7 @@ from routes.main_routes import blue_main
 from routes.funcio_routes import blue_funcio
 from routes.itens_routes import blue_itens
 from routes.cliente_routes import blue_clientes 
+from routes.pedidos_routes import blue_pedidos
 import bcrypt
 
 session_opts = {
@@ -21,7 +22,7 @@ app.secret_key = os.urandom(24)
 app.register_blueprint(blue_main)
 app.register_blueprint(blue_funcio, url_prefix = "/funcionarios")
 app.register_blueprint(blue_itens,url_prefix = "/itens")
-app.register_blueprint(blue_itens,url_prefix = "/pedidos")
+app.register_blueprint(blue_pedidos,url_prefix = "/pedidos")
 app.register_blueprint(blue_clientes,url_prefix = "/clientes")
 
 def create_table():
@@ -35,7 +36,7 @@ def create_table():
     cur.execute("CREATE TABLE IF NOT EXISTS item (id INTEGER PRIMARY KEY, nome TEXT, quantity INTEGER, price REAL)")
     cur.execute("CREATE TABLE IF NOT EXISTS func (id INTEGER PRIMARY KEY,nome TEXT,senha TEXT)")
     cur.execute("CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY, nome TEXT, CNPJ text)")
-    cur.execute("CREATE TABLE IF NOT EXISTS pedido (id INTEGER PRIMARY KEY,data , status BOOLEAN,id_cliente INTEGER, FOREIGN KEY (id_cliente) REFERENCES cliente(id))")
+    cur.execute("CREATE TABLE IF NOT EXISTS pedido (id INTEGER PRIMARY KEY,data DATE, status BOOLEAN,id_cliente INTEGER,FOREIGN KEY (id_itens_pedidos) REFERENCES itens_pedidos(id),FOREIGN KEY (id_cliente) REFERENCES cliente(id))")
     cur.execute("CREATE TABLE IF NOT EXISTS itens_pedidos (id INTEGER PRIMARY KEY, price REAL, quantity INTEGER, nome TEXT,id_cliente INTEGER, id_produto INTEGER, FOREIGN KEY (id_produto) REFERENCES item(id), FOREIGN KEY (id_cliente) REFERENCES cliente(id))")
 
     cur.execute("INSERT INTO item (nome,quantity,price) VALUES (?,?,?)",('exemplo',10,10.89))

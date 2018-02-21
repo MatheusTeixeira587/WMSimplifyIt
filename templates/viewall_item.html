@@ -14,8 +14,8 @@
 						<tr>
 							<td data-name = "product_id"> ID </td>
 							<td data-name = "product_name"> Nome </td>
-             				<td data-name = "product_esqt"> Em Estoque </td>
-            				<td data-name = "product_price"> Preço </td>
+       				<td data-name = "product_esqt"> Em Estoque </td>
+      				<td data-name = "product_price"> Preço </td>
 							<td> Opções </td>
 						</tr>
 					</thead>
@@ -29,7 +29,7 @@
 								<td><a href = "update_item/{{row[0]}}"> Alterar </a></td>
 								<td><a href = "viewone_item/{{row[0]}}"> Ver </a></td>
 								<td><a href = "delete_item/{{row[0]}}"> Deletar </td>
-                                <td><button class="btn btn-success my-cart-btn" data-id = "{{row[0]}}" data-name = "{{row[1]}}" data-quantity = 1 data-price = {{row[3]}} data-image = "{{ url_for('static',filename = 'img/dori.jpeg') }}">Add to cart</button></td>
+                <td><button class="btn btn-success my-cart-btn" data-id = "{{row[0]}}" data-name = "{{row[1]}}" data-quantity = 1 data-price = {{row[3]}} data-image = "{{ url_for('static',filename = 'img/dori.jpeg') }}">Add to cart</button></td>
 							</div>
 						</tr>
 					{%endfor%}
@@ -54,16 +54,16 @@
   $(document).ready(function() {
 
     var goToCartIcon = function($addTocartBtn){
-      var $cartIcon = $(".my-cart-icon");
-      var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
-      $addTocartBtn.prepend($image);
-      var position = $cartIcon.position();
-      $image.animate({
-        top: position.top,
-        left: position.left
-      }, 500 , "linear", function() {
-        $image.remove();
-      });
+      //var $cartIcon = $(".my-cart-icon");
+      //var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+      //$addTocartBtn.prepend($image);
+      //var position = $cartIcon.position();
+      //$image.animate({
+        //top: position.top,
+        //left: position.left
+      //}, 500 , "linear", function() {
+        //$image.remove();
+      //});
     }
 
     var options = {
@@ -93,7 +93,7 @@
         $.each(products, function(){
           checkoutString += ("\n " + this.id + " \t " + this.name + " \t " + this.summary + " \t " + this.price + " \t " + this.quantity + " \t " + this.image);
         });
-        //$.post("{{ url_for('pedidos.add_pedidos') }}",cartItems).done().fail().always()
+        $.post("{{ url_for('pedidos.add_pedidos') }}",cartItems).done().fail().always()
         console.log("checking out", products, totalPrice, totalQuantity);
       },
       getDiscountPrice: function(products, totalPrice, totalQuantity) {

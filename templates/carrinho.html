@@ -1,7 +1,7 @@
 {%extends "layout.html"%}
 {%block content%}
 <div class = "home">
-    <h1 class = "logo"> Lista de Pedidos </h1>
+    <h1 class = "logo"> Itens do pedido </h1>
     <div class = "menu_crud">
       <strong><nav>
         <form class = "form-vertical" method = "post">
@@ -10,9 +10,10 @@
 					<thead>
 						<tr>
 							<td> ID </td>
-							<td> Cliente </td>
-                            <td> Status </td>
-							<td> Pedido </td>
+							<td> Nome </td>
+							<td> Preço </td>
+							<td> Quantidade </td>
+							<td> Opções </td>
 						</tr>
 					</thead>
 					<tbody>
