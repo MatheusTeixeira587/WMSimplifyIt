@@ -33,7 +33,7 @@ def create_table():
     conn = sqlite3.connect("projetowms.db")
     cur = conn.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS item (id INTEGER PRIMARY KEY, nome TEXT, quantity INTEGER, price REAL)")
+    cur.execute("CREATE TABLE IF NOT EXISTS item (id INTEGER PRIMARY KEY, nome TEXT, quantity INTEGER, price REAL, endereco TEXT)")
     cur.execute("CREATE TABLE IF NOT EXISTS func (id INTEGER PRIMARY KEY,nome TEXT,senha TEXT)")
     cur.execute("CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY, nome TEXT, CNPJ text)")
     cur.execute("CREATE TABLE IF NOT EXISTS pedido (id INTEGER PRIMARY KEY,data DATE, status BOOLEAN,id_cliente INTEGER,FOREIGN KEY (id_itens_pedidos) REFERENCES itens_pedidos(id),FOREIGN KEY (id_cliente) REFERENCES cliente(id))")

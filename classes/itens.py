@@ -1,11 +1,17 @@
 import sqlite3
 class Itens():
 
-    def __init__(self,nome = "",table = "item",quantity = "",price = ""):
+    def __init__(self,nome = "",table = "item",quantity = "",price = "", address = "a00b00"):
         self.nome = nome
         self.table = table
         self.quantity = quantity
         self.price = price
+        self.address = address
+        self.rua = address[0]
+        self.prateleira = address[1:3]
+        self.andar = address[3]
+        self.posicao = address[4:6]
+
 
     def add_new(self,nome,quantity,price):
         conn = sqlite3.connect("projetowms.db")

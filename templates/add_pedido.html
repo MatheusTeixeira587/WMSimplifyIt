@@ -1,0 +1,20 @@
+{%extends "layout.html"%}
+{%block content%}
+  <div class = "home">
+    <h1 class = "logo"> Adicionar novo pedido </h1>
+    <div class = "menu_crud">
+      <strong><nav>
+        <form class = "form-vertical" action = "add_pedido" method = "post">
+          <div class = "control-group">
+            <div class = "controls">
+              <input name = "customer" type = "text" placeholder = "Digite o cliente aqui">
+            </div>
+              <div class = "form-actions">
+                <button type = "submit" class = "btn btn-sucess"> Salvar </button>
+                  <a class = "btn" href = "{{url_for('site.pedido')}}">voltar</a>
+              </div>
+          </div>
+        </form>
+    </div>
+  </div>
+{%endblock%}

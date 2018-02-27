@@ -4,16 +4,18 @@ import bcrypt
 blue_funcio = Blueprint("func",__name__,template_folder = "templates")
 
 @blue_funcio.route("/login", methods = ["GET","POST"])
-def login_funcio():
+def login_funcio(dados = ""):
     if request.method == "GET":
         return render_template("login_funcio.html")
     else:
         nome = request.form["nome"]
-        senha =  request.form["senha"]
+        senha = request.form["senha"]
         u1 = User()
         if(u1.check_pass(nome,senha)):
             session["User"] = nome
-            return redirect("/")
+            if dados == "":
+                dados = "/"
+            return redirect(dados)
         else:
             return redirect("/funcionarios/login")
 

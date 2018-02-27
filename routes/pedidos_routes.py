@@ -2,20 +2,32 @@ from flask import *
 from classes.pedidos import Pedidos
 blue_pedidos = Blueprint("pedidos",__name__,template_folder = "templates")
 
-@blue_pedidos.route("/add_pedido",methods = ["GET","POST"])
-def add_pedido(json_content = ""):
-    if "User" in session:
-        if request.method == "GET":
-            return redirect("/itens/viewall_itens.html")
-        else:
-            print(json_content)
-            customer = request.form["customer"]
+
+@blue_pedidos.route("/add_pedido",methods = ["POST"])
+def add_pedido_post():
+#    if "User" in session:
+            dados = request.get_json()
+            print("####",dados['customer'],"####")
+            for d in dados.items():
+            	print("===",d[0],"===")
             status = True
-            p1 = Pedidos()
-            p1.add_new(customer,status,itens)
-            return redirect("/pedidos/viewall_pedidos")
-    else:
-        return redirect("/funcionarios/login")
+            #p1 = Pedidos()
+            #p1.add_new(customer,status,itens)
+            #print(id,nome,customer)
+            msg = {"msg":"OK"}
+            return json.dumps(msg) 
+            #redirect("/pedidos/viewall_pedidos")
+    #else:
+    #    return redirect("/funcionarios/login")
+
+@blue_pedidos.route("/add_pedido",methods = ["GET"])
+def add_pedido():
+    #if "User" in session:
+        return redirect("/itens/viewall_item")
+    #else:
+    #    return redirect("/funcionarios/login")
+
+
 
 @blue_pedidos.route("/update_pedido/<_id_>", methods = ["GET","POST"])
 def update_pedido(_id_):
