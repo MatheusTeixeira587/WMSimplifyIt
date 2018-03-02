@@ -1,33 +1,51 @@
 from flask import *
 from classes.pedidos import Pedidos
+from classes.itens import Itens
+from classes.clientes import Clientes
+from datetime import *
+import datetime
 blue_pedidos = Blueprint("pedidos",__name__,template_folder = "templates")
 
 
-@blue_pedidos.route("/add_pedido",methods = ["POST"])
-def add_pedido_post():
+@blue_pedidos.route("/add_pedido",methods = ["GET","POST"])
+def add_pedido():
 #    if "User" in session:
-            dados = request.get_json()
-            print("####",dados['customer'],"####")
-            for d in dados.items():
-            	print("===",d[0],"===")
-            status = True
+    if request.method == "GET":
+        i1 = Itens()
+        c1 = Clientes()
+        return render_template("add_pedido.html",dados_clientes = c1.view_all(),dados = i1.view_all())
+    else:
+        data = date.today()
+        itens = request.get_json()
+        status = True
+        print(itens)
+        print(type(itens))
+        customer = itens["customer"]
+        itens = itens["items"]
+        print(itens)
+        print(type(itens))
+        p1 = Pedidos()
+        p1.add_new(customer,status)
+        id_pedido = p1.get_id(item,status)
+        for item in itens:
+            print(item)
+            _id_ = item[0]
+            nome = item[1]
+            price = item[2]
+            quantity = item[3]
+            ip1 = Itens_Pedidos()
+            ip1.add_new(data,nome,quantity,price,_id_,id_pedido)
+            print("ok5")
+            session["Carrinho"] = itens       
             #p1 = Pedidos()
             #p1.add_new(customer,status,itens)
             #print(id,nome,customer)
-            msg = {"msg":"OK"}
-            return json.dumps(msg) 
+        msg = {"msg":"OK"}
+        #MSG -> LINK PEDIDO OU CONTINUAR COMPRANDO
+        return json.dumps(msg) 
             #redirect("/pedidos/viewall_pedidos")
     #else:
     #    return redirect("/funcionarios/login")
-
-@blue_pedidos.route("/add_pedido",methods = ["GET"])
-def add_pedido():
-    #if "User" in session:
-        return redirect("/itens/viewall_item")
-    #else:
-    #    return redirect("/funcionarios/login")
-
-
 
 @blue_pedidos.route("/update_pedido/<_id_>", methods = ["GET","POST"])
 def update_pedido(_id_):

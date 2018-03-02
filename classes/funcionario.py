@@ -51,6 +51,8 @@ class User():
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
         dados = cur.execute("SELECT id,senha FROM " + self.table + " WHERE nome = ?",(nome,)).fetchone()
+        conn.close()
+        print(dados)
         _id_ = dados[0]
         senhash = dados[1]
         if(bcrypt.hashpw(senha.encode(),senhash) == senhash):

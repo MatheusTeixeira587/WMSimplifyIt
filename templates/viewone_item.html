@@ -5,7 +5,7 @@
     <div class = "menu_crud">
       <strong><nav>
         <form class = "form-vertical" action = "viewone_item" method = "post">
-            <div class = "control-group">
+            <div class = "control-group col-md-8">
                 <label class = "control-label"> Nome </label>
                 <div class = "controls">
                     <table>
@@ -28,8 +28,8 @@
                     </table>
                     <table>
                         <tr>
-                            <td><a href = "/itens/update_item/{{dados[0]}}"> Alterar </a></td>
-                            <td><a href = "/itens/delete_item/{{dados[0]}}"> Deletar </a></td>
+                            <td><a class = "btn" href = "/itens/update_item/{{dados[0]}}"> Alterar </a></td>
+                            <td><a class = "btn" href = "/itens/delete_item/{{dados[0]}}"> Deletar </a></td>
                             </tr>
                     </table>
                 </div>

@@ -49,10 +49,10 @@ def delete_item(_id_):
 
 @blue_itens.route("/viewall_item", methods = ["GET","POST"])
 def viewall_item():
-    if "User" in session:
+    #if "User" in session:
         f1 = Itens()
         return render_template("viewall_item.html", dados = f1.view_all())
-    else:
+    #else:
         return redirect("/funcionarios/login")
 
 @blue_itens.route("/viewone_item/<_id_>", methods = ["GET"])

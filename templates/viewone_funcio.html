@@ -5,7 +5,7 @@
     <div class = "menu_crud">
       <strong><nav>
         <form class = "form-vertical" action = "viewone_funcio" method = "post">
-            <div class = "control-group">
+            <div class = "control-group col-md-8">
                 <label class = "control-label"> Nome </label>
                 <div class = "controls">
                     <table>
@@ -24,8 +24,8 @@
                     </table>
                     <table>
                         <tr>
-                            <td><a href = "/funcionarios/update_funcio/{{dados[0]}}"> Alterar </a></td>
-                            <td><a href = "/funcionarios/delete_funcio/{{dados[0]}}"> Deletar </a></td>
+                            <td><a class = "btn" href = "/funcionarios/update_funcio/{{dados[0]}}"> Alterar </a></td>
+                            <td><a class = "btn" href = "/funcionarios/delete_funcio/{{dados[0]}}"> Deletar </a></td>
                             </tr>
                     </table>
                 </div>

@@ -5,7 +5,7 @@
     <div class = "menu_crud">
       <strong><nav>
         <form class = "form-vertical" action = "viewone_pedidos" method = "post">
-            <div class = "control-group">
+            <div class = "control-group col-md-8">
                 <label class = "control-label"> Nome </label>
                 <div class = "controls">
                     <table>
@@ -27,8 +27,8 @@
                     </table>
                     <table>
                         <tr>
-                            <td><a href = "/pedidos/update_pedidos/{{dados[0]}}"> Alterar </a></td>
-                            <td><a href = "/pedidos/delete_pedidos/{{dados[0]}}"> Deletar </a></td>
+                            <td><a class = "btn" href = "/pedidos/update_pedidos/{{dados[0]}}"> Alterar </a></td>
+                            <td><a class = "btn" href = "/pedidos/delete_pedidos/{{dados[0]}}"> Deletar </a></td>
                             </tr>
                     </table>
                 </div>

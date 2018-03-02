@@ -42,3 +42,10 @@ class Clientes():
         cur.execute("DELETE FROM " + self.table + " WHERE id = ?",(_id_,))
         conn.commit()
         conn.close()
+
+    def get_id(self,nome):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        dados = cur.execute("SELECT id FROM " + self.table + " WHERE nome = ?",(nome,)).fetchone()
+        conn.close()
+        return dados
