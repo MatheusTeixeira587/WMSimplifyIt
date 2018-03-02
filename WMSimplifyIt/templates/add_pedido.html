@@ -1,0 +1,137 @@
+{%extends "layout.html"%}
+
+{%block css%}
+{%endblock%}
+
+{%block content%}
+<div class = "home">
+    <h1 class = "logo"> Lista de itens </h1>
+    <div class = "menu_crud">
+      <strong><nav>
+            <div class = "control-group col-md-8">
+              <table class="table table-striped table-bordered" id="tabelaClientes" >
+                <thead>
+                  <tr>
+                    <td> ID </td>
+                    <td> Nome </td>
+                    <td> CNPJ </td>
+                    <td> Comprador </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {%for row in dados_clientes%}
+                    <tr>
+                      {%for col in row%}
+                        <td>{{ col }}</td>
+                      {%endfor%}
+                      <td><input type = "Radio" value = "{{ row[0] }}" name = "customer" class = "customer"> Select this </td>
+                    </tr>
+                  {%endfor%}
+                </tbody>
+              </table>
+              <table  class="table table-striped table-bordered" name="tabela" id="tabela" >
+                <thead>
+                  <tr>
+                    <td data-name = "product_id"> ID </td>
+                    <td data-name = "product_name"> Nome </td>
+                    <td data-name = "product_esqt"> Em Estoque </td>
+                    <td data-name = "product_price"> Preço </td>
+                    <td> Opções </td>
+                  </tr>
+                </thead>
+                <tbody>
+                {%for row in dados%}
+                  <tr class = "sc-product-item">
+                  {%for col in row%}
+                    <td>{{ col }}</td>
+                  {%endfor%}
+                    <div class = "buttons">
+                      <td><button class="btn" href = "update_item/{{row[0]}}"> Alterar </button></td>
+                      <td><button class="btn" href = "viewone_item/{{row[0]}}"> Ver </button></td>
+                      <td><button class="btn" href = "delete_item/{{row[0]}}"> Deletar </button></td>
+                      <td><button class="btn btn-success my-cart-btn" data-id = "{{row[0]}}" data-name = "{{row[1]}}" data-quantity = 1 data-price = {{row[3]}} data-image = "{{ url_for('static',filename = 'img/dori.jpeg') }}">Add to cart</button></td>
+                    </div>
+                  </tr>
+                {%endfor%}
+                </tbody>
+              </table>
+          </div>
+            <div class = "col-md-4 control-group">
+                <div style="float: right; cursor: pointer;">
+                    <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
+                </div>
+                </form>
+            </div>
+    </div>
+</div>
+{%endblock%}
+{%block js%}
+
+<script src="{{url_for('static',filename = 'js/jquery.mycart.min.js')}}"></script>
+<script src= "{{ url_for ('static',filename = 'js/datatables.min.js')}}"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    //DataTable
+    $('#tabelaClientes').DataTable();
+    //$('#tabela').DataTable();
+
+    //cart
+    var goToCartIcon = function($addTocartBtn){
+    }
+    var options = {
+      currencySymbol: '$',
+      classCartIcon: 'my-cart-icon',
+      classCartBadge: 'my-cart-badge',
+      classProductQuantity: 'my-product-quantity',
+      classProductRemove: 'my-product-remove',
+      classCheckoutCart: 'my-cart-checkout',
+      affixCartIcon: true,
+      showCheckoutModal: true,
+      numberOfDecimals: 2,
+      cartItems: [],
+      clickOnAddToCart: function($addTocart){
+        console.log($addTocart)
+        goToCartIcon($addTocart);
+      },
+      afterAddOnCart: function(products, totalPrice, totalQuantity) {
+        console.log("afterAddOnCart", products, totalPrice, totalQuantity);
+      },
+      clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+        console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+      },
+      checkoutCart: function(products, totalPrice, totalQuantity) {
+    var checkoutString;
+  var my_items = '';
+  var counter = 0;
+    $.each(products, function(){
+      my_items += '{"id":"'+this.id+'","name":"'+this.name+'","price":"'+this.price+'","quantity":"'+this.quantity+'"}';
+      //my_items += 'id='+this.id+'&name='+this.name+'&price='+this.price+'&quantity='+this.quantity+'';
+      counter++;        
+      if (counter<totalQuantity){
+        my_items +=",";
+      }
+          });
+    cst = $('.customer:checked').val();
+    //cst = $('#customer_id').text();
+  checkoutString = '{"customer":"'+cst+'","items": ['+my_items+']}'; //JSON.stringify(     JSON.parse(
+  //checkoutString = '{"items": ['+my_items+']}';
+    $.ajax({
+      contentType: 'application/json',
+        type: "POST",
+        url: "{{ url_for('pedidos.add_pedido') }}",
+      data: checkoutString,
+      success: function( data ) {
+        console.log("---> "+data.msg)
+        $( '#customer_name' ).html( 'Resultados: ' + data.length );
+      }
+    });
+       console.log("checking out", products, totalPrice, totalQuantity, checkoutString);
+      },
+    };
+
+      // Initialize the leaveStep event
+      $(".my-cart-btn").myCart(options);
+  }); 
+</script>
+{%endblock%}

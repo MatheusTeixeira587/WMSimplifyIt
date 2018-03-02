@@ -1,0 +1,13 @@
+{%extends "layout.html"%}
+{%block content%}
+	<div class = "home">
+		<h1 class = "logo"> Itens </h1>
+		<div class = "menu_crud">
+			<strong><nav>
+				<ul class = "menu_crud">
+					<li><a href = "{{url_for('itens.add_item')}}">Adicionar novo </a></li>
+					<li><a href = "{{url_for('itens.viewall_item')}}">Ver lista </a></li>
+				</ul>
+		</div>
+	</div>
+{%endblock%}
