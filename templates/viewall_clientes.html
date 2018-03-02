@@ -4,7 +4,7 @@
     <h1 class = "logo"> Lista de Clientes </h1>
     <div class = "menu_crud">
       <strong><nav>
-        <form class = "form-vertical" action = "add_clientes" method = "post">
+        <form class = "form-vertical" method = "post">
           	<div class = "control-group col-md-8">
             	<table class="table table-striped table-bordered" name="tabela" id="tabela" >
 					<thead>
@@ -21,9 +21,9 @@
 							<td>{{ col }}</td>
 						{%endfor%}
 							<div class = "buttons">
-								<td><button class = "btn" href = "update_clientes/{{row[0]}}"> Alterar </button></td>
-								<td><button class = "btn" href = "viewone_clientes/{{row[0]}}"> Ver </button></td>
-								<td><button class = "btn" href = "delete_clientes/{{row[0]}}"> Deletar </button></td>
+								<td><form action = "update_clientes/{{row[0]}}" type = "POST" ><button class = "btn" type = "submit"> Alterar </button></form></td>
+								<td><button class = "btn" type = "button" action = "viewone_clientes/{{row[0]}}"> Ver </button></td>
+								<td><button class = "btn" action = "delete_clientes/{{row[0]}}"> Deletar </button></td>
 							</div>
 						</tr>
 					{%endfor%}

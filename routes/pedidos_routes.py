@@ -2,7 +2,6 @@ from flask import *
 from classes.pedidos import Pedidos
 from classes.itens import Itens
 from classes.clientes import Clientes
-from datetime import *
 import datetime
 blue_pedidos = Blueprint("pedidos",__name__,template_folder = "templates")
 
@@ -15,24 +14,21 @@ def add_pedido():
         c1 = Clientes()
         return render_template("add_pedido.html",dados_clientes = c1.view_all(),dados = i1.view_all())
     else:
-        data = date.today()
+        data = datetime.datetime.today().strftime("%Y-%m-%d")
         itens = request.get_json()
         status = True
-        print(itens)
-        print(type(itens))
         customer = itens["customer"]
         itens = itens["items"]
-        print(itens)
-        print(type(itens))
         p1 = Pedidos()
-        p1.add_new(customer,status)
-        id_pedido = p1.get_id(item,status)
+        p1.add_new(data,customer,status)
+        id_pedido = p1.get_id(data,customer,status)
+        print(id_pedido)
         for item in itens:
             print(item)
-            _id_ = item[0]
-            nome = item[1]
-            price = item[2]
-            quantity = item[3]
+            _id_ = item["id"]
+            nome = item["name"]
+            price = item["price"]
+            quantity = item["quantity"]
             ip1 = Itens_Pedidos()
             ip1.add_new(data,nome,quantity,price,_id_,id_pedido)
             print("ok5")
