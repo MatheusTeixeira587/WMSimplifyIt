@@ -2,16 +2,16 @@ import sqlite3
 
 class Pedidos():
 
-    def __init__(self,table = "pedido",_id_ = "", id_cliente = "",date = "", status = ""):
+    def __init__(self,table = "pedido",_id_ = "", id_cliente = "",data = "", status = ""):
         self.table = table
         self.status = status
         self.id_cliente = id_cliente
-        self.date = date
+        self.data = data
 
-    def add_new(self,date,id_cliente,status):
+    def add_new(self,data,id_cliente,status):
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
-        cur.execute("INSERT INTO " + self.table + " (data,status,id_cliente) VALUES (?,?,?)",(date,status,id_cliente))
+        cur.execute("INSERT INTO " + self.table + " (data,status,id_cliente) VALUES (?,?,?)",(data,status,id_cliente))
         conn.commit()
         conn.close()
 
@@ -31,10 +31,10 @@ class Pedidos():
         conn.close()
         return dados
 
-    def update(self,nome,status,itens,_id_):
+    def update(self,nome,status,itens,_id_,data):
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
-        cur.execute("UPDATE " + self.table + " SET date = ?, status = ?, id_cliente = ? = ?, WHERE id = ?",(date,status,id_cliente,_id_))
+        cur.execute("UPDATE " + self.table + " SET data = ?, status = ?, id_cliente = ? = ?, WHERE id = ?",(data,status,id_cliente,_id_))
         conn.commit()
         conn.close()
 
@@ -56,8 +56,8 @@ class Pedidos():
         cur.commit()
         cur.close()
 
-    def get_id(self,date,id_cliente,status):
+    def get_id(self,data,id_cliente,status):
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
-        dados = cur.execute("SELECT id FROM " + self.table + " WHERE id_cliente = ? AND status = ? AND data = ?",(date,id_cliente,status)).fetchall()
+        dados = cur.execute("SELECT id FROM " + self.table + " WHERE id_cliente = ? and data = ? and status= ?",(id_cliente,data,status)).fetchone()
         return dados

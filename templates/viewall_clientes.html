@@ -21,9 +21,9 @@
 							<td>{{ col }}</td>
 						{%endfor%}
 							<div class = "buttons">
-								<td><form action = "update_clientes/{{row[0]}}" type = "POST" ><button class = "btn" type = "submit"> Alterar </button></form></td>
-								<td><button class = "btn" type = "button" action = "viewone_clientes/{{row[0]}}"> Ver </button></td>
-								<td><button class = "btn" action = "delete_clientes/{{row[0]}}"> Deletar </button></td>
+								<td><a class = "btn btn-info" role = "button" href = "update_clientes/{{row[0]}}"> Alterar </a></td>
+								<td><a class = "btn btn-info"  href = "viewone_clientes/{{row[0]}}" role = "button"> Ver </a></td>
+								<td><a class = "btn btn-info" href = "delete_clientes/{{row[0]}}" role = "button"> Deletar </a></td>
 							</div>
 						</tr>
 					{%endfor%}

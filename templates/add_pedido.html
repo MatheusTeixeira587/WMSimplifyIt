@@ -46,9 +46,9 @@
                     <td>{{ col }}</td>
                   {%endfor%}
                     <div class = "buttons">
-                      <td><button class="btn" href = "update_item/{{row[0]}}"> Alterar </button></td>
-                      <td><button class="btn" href = "viewone_item/{{row[0]}}"> Ver </button></td>
-                      <td><button class="btn" href = "delete_item/{{row[0]}}"> Deletar </button></td>
+                      <td><a class="btn btn-info" role = "button" href = "update_item/{{row[0]}}"> Alterar </a></td>
+                      <td><a class="btn btn-info" role = "button" href = "viewone_item/{{row[0]}}"> Ver </a></td>
+                      <td><a class="btn btn-info" role = "button" href = "delete_item/{{row[0]}}"> Deletar </a></td>
                       <td><button class="btn btn-success my-cart-btn" data-id = "{{row[0]}}" data-name = "{{row[1]}}" data-quantity = 1 data-price = {{row[3]}} data-image = "{{ url_for('static',filename = 'img/dori.jpeg') }}">Add to cart</button></td>
                     </div>
                   </tr>

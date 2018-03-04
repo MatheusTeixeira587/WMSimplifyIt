@@ -2,6 +2,7 @@ from flask import *
 from classes.pedidos import Pedidos
 from classes.itens import Itens
 from classes.clientes import Clientes
+from classes.itens_pedidos import Itens_Pedidos
 import datetime
 blue_pedidos = Blueprint("pedidos",__name__,template_folder = "templates")
 
@@ -18,19 +19,19 @@ def add_pedido():
         itens = request.get_json()
         status = True
         customer = itens["customer"]
+        c1 = Clientes()
+        customer_nome = c1.get_nome(customer)
         itens = itens["items"]
         p1 = Pedidos()
         p1.add_new(data,customer,status)
         id_pedido = p1.get_id(data,customer,status)
-        print(id_pedido)
         for item in itens:
-            print(item)
-            _id_ = item["id"]
+            id_produto = item["id"]
             nome = item["name"]
             price = item["price"]
             quantity = item["quantity"]
             ip1 = Itens_Pedidos()
-            ip1.add_new(data,nome,quantity,price,_id_,id_pedido)
+            ip1.add_new(nome,quantity,price,id_produto,id_pedido)
             print("ok5")
             session["Carrinho"] = itens       
             #p1 = Pedidos()

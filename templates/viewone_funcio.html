@@ -24,14 +24,14 @@
                     </table>
                     <table>
                         <tr>
-                            <td><a class = "btn" href = "/funcionarios/update_funcio/{{dados[0]}}"> Alterar </a></td>
+                            <td><a class = "btn btn-info" role = "button" href = "/funcionarios/update_funcio/{{dados[0]}}"> Alterar </a></td>
                             <td><a class = "btn" href = "/funcionarios/delete_funcio/{{dados[0]}}"> Deletar </a></td>
                             </tr>
                     </table>
                 </div>
                     <div class = "form-actions">
                         <button type = "submit" class = "btn btn-sucess"> Salvar </button>
-                        <a class = "btn" href = "{{url_for('site.funcionarios')}}">voltar</a>
+                        <a class = "btn btn-info" role = "button" href = "{{url_for('site.funcionarios')}}">voltar</a>
                     </div>
             </div>
         </form>
