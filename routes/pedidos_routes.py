@@ -3,7 +3,11 @@ from classes.pedidos import Pedidos
 from classes.itens import Itens
 from classes.clientes import Clientes
 from classes.itens_pedidos import Itens_Pedidos
+<<<<<<< HEAD
 import json
+=======
+import datetime
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
 blue_pedidos = Blueprint("pedidos",__name__,template_folder = "templates")
 
 
@@ -15,6 +19,7 @@ def add_pedido():
         c1 = Clientes()
         return render_template("add_pedido.html",dados_clientes = c1.view_all(),dados = i1.view_all())
     else:
+<<<<<<< HEAD
         print("POST")
         itens = request.get_json()
         print(itens)
@@ -25,14 +30,36 @@ def add_pedido():
         id_pedido = p1.get_id(customer)
         for item in itens:
             print(item)
+=======
+        data = datetime.datetime.today().strftime("%Y-%m-%d")
+        itens = request.get_json()
+        status = True
+        customer = itens["customer"]
+        c1 = Clientes()
+        customer_nome = c1.get_nome(customer)
+        itens = itens["items"]
+        p1 = Pedidos()
+        p1.add_new(data,customer,status)
+        id_pedido = p1.get_id(data,customer,status)
+        for item in itens:
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
             id_produto = item["id"]
             nome = item["name"]
             price = item["price"]
             quantity = item["quantity"]
             ip1 = Itens_Pedidos()
+<<<<<<< HEAD
             ip1.add_new(price,quantity,nome,id_produto,id_pedido)
             print("ok5")
             session["Carrinho"] = itens       
+=======
+            ip1.add_new(nome,quantity,price,id_produto,id_pedido)
+            print("ok5")
+            session["Carrinho"] = itens       
+            #p1 = Pedidos()
+            #p1.add_new(customer,status,itens)
+            #print(id,nome,customer)
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
         msg = {"msg":"OK"}
         #MSG -> LINK PEDIDO OU CONTINUAR COMPRANDO
         return json.dumps(msg) 

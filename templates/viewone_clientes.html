@@ -26,6 +26,7 @@
                     </table>
                     <table>
                         <tr>
+<<<<<<< HEAD
                             <td><a class = "btn btn-default" href = "/clientes/update_clientes/{{dados[0]}}"> Alterar </a></td>
                             <td><a class = "btn btn-default" href = "/clientes/delete_clientes/{{dados[0]}}"> Deletar </a></td>
                         </tr>
@@ -34,6 +35,16 @@
                     <div class = "form-actions">
                         <td><button type = "submit" class = "btn btn-sucess"> Salvar </button></td>
                         <td><a class = "btn btn-info" href = "{{url_for('site.clientes')}}">voltar</a></td>
+=======
+                            <td><a class = "btn btn-info" role = "button" href = "/clientes/update_clientes/{{dados[0]}}"> Alterar </a></td>
+                            <td><a class = "btn btn-info" role = "button" href = "/clientes/delete_clientes/{{dados[0]}}"> Deletar </a></td>
+                            </tr>
+                    </table>
+                </div>
+                    <div class = "form-actions">
+                        <button type = "submit" class = "btn btn-sucess"> Salvar </button>
+                        <a class = "btn btn-info" role = "button" href = "{{url_for('site.clientes')}}">voltar</a>
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
                     </div>
             </div>
         </form>

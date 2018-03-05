@@ -36,7 +36,10 @@
                     <td data-name = "product_name"> Nome </td>
                     <td data-name = "product_esqt"> Em Estoque </td>
                     <td data-name = "product_price"> Preço </td>
+<<<<<<< HEAD
                     <td> Endereço </td>
+=======
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
                     <td> Opções </td>
                   </tr>
                 </thead>
@@ -47,6 +50,12 @@
                     <td>{{ col }}</td>
                   {%endfor%}
                     <div class = "buttons">
+<<<<<<< HEAD
+=======
+                      <td><a class="btn btn-info" role = "button" href = "update_item/{{row[0]}}"> Alterar </a></td>
+                      <td><a class="btn btn-info" role = "button" href = "viewone_item/{{row[0]}}"> Ver </a></td>
+                      <td><a class="btn btn-info" role = "button" href = "delete_item/{{row[0]}}"> Deletar </a></td>
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
                       <td><button class="btn btn-success my-cart-btn" data-id = "{{row[0]}}" data-name = "{{row[1]}}" data-quantity = 1 data-price = {{row[3]}} data-image = "{{ url_for('static',filename = 'img/dori.jpeg') }}">Add to cart</button></td>
                     </div>
                   </tr>
@@ -99,10 +108,16 @@
         console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
       },
       checkoutCart: function(products, totalPrice, totalQuantity) {
+<<<<<<< HEAD
       var checkoutString;
       var checkoutJson;
       var my_items = '';
       var counter = 0;
+=======
+    var checkoutString;
+  var my_items = '';
+  var counter = 0;
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
     $.each(products, function(){
       my_items += '{"id":"'+this.id+'","name":"'+this.name+'","price":"'+this.price+'","quantity":"'+this.quantity+'"}';
       //my_items += 'id='+this.id+'&name='+this.name+'&price='+this.price+'&quantity='+this.quantity+'';
@@ -111,6 +126,7 @@
         my_items +=",";
       }
           });
+<<<<<<< HEAD
       cst = $('.customer:checked').val();
       //checkoutString = '{"customer":"'+cst+'","items": ['+my_items+']}'; //JSON.stringify(     JSON.parse(
       checkoutString = {"customer":""+cst+"","items": [''+my_items+'']};
@@ -129,6 +145,24 @@
     });
        console.log("checking out", products, totalPrice, totalQuantity, checkoutString);
        },
+=======
+    cst = $('.customer:checked').val();
+    //cst = $('#customer_id').text();
+  checkoutString = '{"customer":"'+cst+'","items": ['+my_items+']}'; //JSON.stringify(     JSON.parse(
+  //checkoutString = '{"items": ['+my_items+']}';
+    $.ajax({
+      contentType: 'application/json',
+        type: "POST",
+        url: "{{ url_for('pedidos.add_pedido') }}",
+      data: checkoutString,
+      success: function( data ) {
+        console.log("---> "+data.msg)
+        $( '#customer_name' ).html( 'Resultados: ' + data.length );
+      }
+    });
+       console.log("checking out", products, totalPrice, totalQuantity, checkoutString);
+      },
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
     };
 
       // Initialize the leaveStep event

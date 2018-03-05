@@ -2,15 +2,28 @@ import sqlite3, datetime
 
 class Pedidos():
 
+<<<<<<< HEAD
     def __init__(self,table = "pedido",_id_ = "", id_cliente = ""):
+=======
+    def __init__(self,table = "pedido",_id_ = "", id_cliente = "",data = "", status = ""):
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
         self.table = table
         self.status = True
         self.id_cliente = id_cliente
+<<<<<<< HEAD
         self.data = datetime.datetime.today().strftime("%Y-%m-%d")
     def add_new(self,id_cliente):
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
         cur.execute("INSERT INTO " + self.table + " (data,status,id_cliente) VALUES (?,?,?)",(self.data,self.status,id_cliente))
+=======
+        self.data = data
+
+    def add_new(self,data,id_cliente,status):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        cur.execute("INSERT INTO " + self.table + " (data,status,id_cliente) VALUES (?,?,?)",(data,status,id_cliente))
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
         conn.commit()
         conn.close()
 
@@ -37,10 +50,17 @@ class Pedidos():
         conn.close()
         return dados
 
+<<<<<<< HEAD
     def update(self,data,nome,status,itens,_id_):
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
         cur.execute("UPDATE " + self.table + " SET data = ?, status = ?, id_cliente = ? = ?, WHERE id = ?",(self.data,self.status,id_cliente,_id_))
+=======
+    def update(self,nome,status,itens,_id_,data):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        cur.execute("UPDATE " + self.table + " SET data = ?, status = ?, id_cliente = ? = ?, WHERE id = ?",(data,status,id_cliente,_id_))
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
         conn.commit()
         conn.close()
 
@@ -62,6 +82,7 @@ class Pedidos():
         cur.commit()
         cur.close()
 
+<<<<<<< HEAD
     def get_id(self,id_cliente):
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
@@ -74,3 +95,10 @@ class Pedidos():
         cur = conn.cursor()
 
         conn.close
+=======
+    def get_id(self,data,id_cliente,status):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        dados = cur.execute("SELECT id FROM " + self.table + " WHERE id_cliente = ? and data = ? and status= ?",(id_cliente,data,status)).fetchone()
+        return dados
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364

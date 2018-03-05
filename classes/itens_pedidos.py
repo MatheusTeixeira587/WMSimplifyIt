@@ -16,6 +16,7 @@ class Itens_Pedidos():
         self.andar = address[3]
         self.posicao = address[4:6]
 
+<<<<<<< HEAD
         def add_new(self,nome,quantity,price):
             conn = sqlite3.connect("projetowms.db")
             cur = conn.cursor()
@@ -50,3 +51,39 @@ class Itens_Pedidos():
             cur.execute("DELETE FROM " + self.table + " WHERE id = ?",(_id_,))
             conn.commit()
             conn.close()
+=======
+    def add_new(self,nome,quantity,price,id_produto,id_pedido):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        cur.execute("INSERT INTO " + self.table + " (price,quantity,nome,id_produto,id_pedido) VALUES (?,?,?,?,?)",(price,quantity,nome,id_produto,id_pedido))
+        conn.commit()
+        conn.close()
+
+    def view_all(self):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        dados = cur.execute("SELECT * FROM " + self.table).fetchall()
+        conn.close()
+        return dados
+
+    def view_one(self,_id_):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        dados = cur.execute("SELECT * FROM " + self.table + " WHERE id = ?",(_id_,)).fetchone()
+        conn.close()
+        return dados
+
+    def update(self,nome,quantity,price,_id_):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        cur.execute("UPDATE " + self.table + " SET nome = ? quantity = ? price = ? WHERE id = ?",(nome,quantity,price,_id_))
+        conn.commit()
+        conn.close()
+
+    def delete(self,_id_):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        cur.execute("DELETE FROM " + self.table + " WHERE id = ?",(_id_,))
+        conn.commit()
+        conn.close()
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364

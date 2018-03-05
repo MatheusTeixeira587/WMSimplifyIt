@@ -48,4 +48,14 @@ class Clientes():
         cur = conn.cursor()
         dados = cur.execute("SELECT id FROM " + self.table + " WHERE nome = ?",(nome,)).fetchone()
         conn.close()
+<<<<<<< HEAD
+=======
+        return dados
+
+    def get_nome(self,_id_):
+        conn = sqlite3.connect("projetowms.db")
+        cur = conn.cursor()
+        dados = cur.execute("SELECT nome FROM " + self.table + " WHERE id = ?",(_id_,)).fetchone()
+        conn.close()
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
         return dados

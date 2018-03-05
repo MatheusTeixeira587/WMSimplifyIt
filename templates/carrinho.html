@@ -23,9 +23,9 @@
 							<td>{{ col }}</td>
 						{%endfor%}
 							<div class = "buttons">
-								<td><a href = "update_funcio/{{row[0]}}"> Alterar </a></td>
-								<td><a href = "viewone_funcio/{{row[0]}}"> Ver </a></td>
-								<td><a href = "delete_funcio/{{row[0]}}"> Deletar </td>
+								<td><a class = "btn btn-info" role = "button" href = "update_funcio/{{row[0]}}"> Alterar </a></td>
+								<td><a class = "btn btn-info" role = "button" href = "viewone_funcio/{{row[0]}}"> Ver </a></td>
+								<td><a class = "btn btn-info" role = "button" href = "delete_funcio/{{row[0]}}"> Deletar </td>
 							</div>
 						</tr>
 					{%endfor%}

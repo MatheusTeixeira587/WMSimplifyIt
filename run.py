@@ -37,7 +37,11 @@ def create_table():
     cur.execute("CREATE TABLE IF NOT EXISTS func (id INTEGER PRIMARY KEY,nome TEXT,senha TEXT)")
     cur.execute("CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY, nome TEXT, CNPJ text)")
     cur.execute("CREATE TABLE IF NOT EXISTS pedido (id INTEGER PRIMARY KEY,data DATE, status BOOLEAN,id_cliente INTEGER,FOREIGN KEY (id_cliente) REFERENCES cliente(id))")
+<<<<<<< HEAD
     cur.execute("CREATE TABLE IF NOT EXISTS itens_pedidos (id INTEGER PRIMARY KEY, price REAL, quantity INTEGER, nome TEXT,id_cliente INTEGER, id_produto INTEGER, FOREIGN KEY (id_produto) REFERENCES item(id), FOREIGN KEY (id_cliente) REFERENCES cliente(id))")
+=======
+    cur.execute("CREATE TABLE IF NOT EXISTS itens_pedidos (id INTEGER PRIMARY KEY, price REAL, quantity INTEGER, nome TEXT, id_produto INTEGER,id_pedido INTEGER, FOREIGN KEY (id_produto) REFERENCES item(id),FOREIGN KEY (id_pedido) REFERENCES pedido(id))")
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
 
     cur.execute("INSERT INTO item (nome,quantity,price) VALUES (?,?,?)",('exemplo',10,10.89))
     cur.execute("INSERT INTO func (nome,senha )VALUES (?,?)",('matheus',senhash))

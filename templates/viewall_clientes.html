@@ -4,7 +4,11 @@
     <h1 class = "logo"> Lista de Clientes </h1>
     <div class = "menu_crud">
       <strong><nav>
+<<<<<<< HEAD
         <form class = "form-vertical" action = "add_clientes" method = "post">
+=======
+        <form class = "form-vertical" method = "post">
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
           	<div class = "control-group col-md-8">
             	<table class="table table-striped table-bordered" name="tabela" id="tabela" >
 					<thead>
@@ -21,9 +25,15 @@
 							<td>{{ col }}</td>
 						{%endfor%}
 							<div class = "buttons">
+<<<<<<< HEAD
 								<td><a class = "btn btn-default" href = "update_clientes/{{row[0]}}"> Alterar </a></td>
 								<td><a class = "btn btn-default" href = "viewone_clientes/{{row[0]}}"> Ver </a></td>
 								<td><a class = "btn btn-default" href = "delete_clientes/{{row[0]}}"> Deletar </a></td>
+=======
+								<td><a class = "btn btn-info" role = "button" href = "update_clientes/{{row[0]}}"> Alterar </a></td>
+								<td><a class = "btn btn-info"  href = "viewone_clientes/{{row[0]}}" role = "button"> Ver </a></td>
+								<td><a class = "btn btn-info" href = "delete_clientes/{{row[0]}}" role = "button"> Deletar </a></td>
+>>>>>>> 0e1cc2230c3d6d66ced139d7527679d1bceb3364
 							</div>
 						</tr>
 					{%endfor%}
