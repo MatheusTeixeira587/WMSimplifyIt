@@ -1,7 +1,9 @@
 import sqlite3
+
 class Itens():
 
     def __init__(self,nome = "",table = "item",quantity = "",price = "", address = "a00b00"):
+
         self.nome = nome
         self.table = table
         self.quantity = quantity
@@ -12,11 +14,10 @@ class Itens():
         self.andar = address[3]
         self.posicao = address[4:6]
 
-
     def add_new(self,nome,quantity,price):
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
-        cur.execute("INSERT INTO " + self.table + " (nome,quantity,price) VALUES (?,?,?)",(nome,quantity,price))
+        cur.execute("INSERT INTO " + self.table + " (nome,quantity,price,endereco) VALUES (?,?,?,?)",(nome,quantity,price,endereco))
         conn.commit()
         conn.close()
 
@@ -37,7 +38,7 @@ class Itens():
     def update(self,nome,quantity,price,_id_):
         conn = sqlite3.connect("projetowms.db")
         cur = conn.cursor()
-        cur.execute("UPDATE " + self.table + " SET (nome,quantity,price) WHERE id = ?",(nome,quantity,price,_id_))
+        cur.execute("UPDATE " + self.table + " SET nome = ? quantity = ? price = ? WHERE id = ?",(nome,quantity,price,_id_))
         conn.commit()
         conn.close()
 

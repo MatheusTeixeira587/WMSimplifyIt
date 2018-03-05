@@ -25,7 +25,10 @@ def update_clientes(_id_):
             return render_template("update_clientes.html", dados = c1.view_one(_id_))
         else:
             nome = request.form["nome"]
-            CNPJ = request.form["CNPJ"]            
+            CNPJ = request.form["CNPJ"]  
+            c1 = Clientes()
+            c1.update(_id_,nome,CNPJ)
+            return redirect("/clientes/viewone<_id_>")      
     else:
         return redirect("/funcionarios/login")
 

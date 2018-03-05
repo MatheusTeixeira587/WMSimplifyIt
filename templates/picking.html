@@ -10,11 +10,9 @@
 					<thead>
 						<tr>
 							<td> ID </td>
-							<td> Data </td>
-							<td> Status </td>
-							<td> Cliente </td>                            
+							<td> Cliente </td>
+                            <td> Status </td>
 							<td> Pedido </td>
-							<td> Opções </td>
 						</tr>
 					</thead>
 					<tbody>
@@ -24,15 +22,13 @@
 							<td>{{ col }}</td>
 						{%endfor%}
 							<div class = "buttons">
-								<td><a class = "btn btn-default" href = "update_pedido/{{row[0]}}"> Alterar </a></td>
 								<td><a class = "btn btn-default" href = "viewone_pedido/{{row[0]}}"> Ver </a></td>
-								<td><a class = "btn btn-default" href = "delete_pedido/{{row[0]}}"> Deletar </a></td>
-								<td><a class = "btn btn-success" href = "picking/{{row[0]}}"> Picking </a></td>
 							</div>
 						</tr>
 					{%endfor%}
 					</tbody>
 				</table>
+				<td><button type = "submit" class = "btn btn-success"> Finalizar picking </button></td>
     		</div>
         </form>
     </div>

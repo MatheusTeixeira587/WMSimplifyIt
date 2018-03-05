@@ -5,7 +5,7 @@
     <div class = "menu_crud">
       <strong><nav>
         <form class = "form-vertical" action = "add_funcio" method = "post">
-          	<div class = "control-group">
+          	<div class = "control-group col-md-8">
             	<table class="table table-striped table-bordered" name="tabela" id="tabela" >
 					<thead>
 						<tr>
@@ -21,9 +21,9 @@
 							<td>{{ col }}</td>
 						{%endfor%}
 							<div class = "buttons">
-								<td><a href = "update_funcio/{{row[0]}}"> Alterar </a></td>
-								<td><a href = "viewone_funcio/{{row[0]}}"> Ver </a></td>
-								<td><a href = "delete_funcio/{{row[0]}}"> Deletar </td>
+								<td><a class = "btn btn-default" href = "update_funcio/{{row[0]}}"> Alterar </a></td>
+								<td><a class = "btn btn-default" href = "viewone_funcio/{{row[0]}}"> Ver </a></td>
+								<td><a class = "btn btn-default" href = "delete_funcio/{{row[0]}}"> Deletar </a></td>
 							</div>
 						</tr>
 					{%endfor%}

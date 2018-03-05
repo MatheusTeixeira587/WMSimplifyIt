@@ -44,11 +44,11 @@ def update_funcio(_id_):
             antiga_senha = request.form["antiga_senha"]
             nova_senha = request.form["senha"]
             confirma_nova_senha = request.form["senha2"]
-            if senha == senha2:
-                salt = bcrypt.gensalt()
-                senha = bcrypt.hashpw(senha.encode("utf-8"),salt)
+            if nova_senha == confirma_nova_senha:
                 u1 = User()
                 if(u1.check_pass(_id_,antiga_senha)):
+                    salt = bcrypt.gensalt()
+                    senha = bcrypt.hashpw(nova_senha.encode("utf-8"),salt)
                     u1.update(nome,_id_,senha)
                     return redirect("/funcionarios/viewone_funcio/" + _id_ + "")
     else:
